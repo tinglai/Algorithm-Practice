@@ -1,3 +1,11 @@
+//Here I basically used a method by recursion to firstly copy
+//all the existing subsets and then add the current element at
+//the end of those copied subsets.
+//there is actually another methdo to implement this task,
+//by generating arrays of binary numbers from 0 ~ 2^n- 1,
+//and then convert the int array to subsets.
+//However, this is not in place and the idea is quite similar
+//I'm not going to code this.
 #include <iostream> 
 #include <vector> 
 using namespace std;
