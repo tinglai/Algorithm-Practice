@@ -28,7 +28,8 @@ int main(){
 			paths[i].resize(y);
 		}
 	}
-	cout << "First version: There are in total " << num(x, y) << " possible paths." << endl;
+	cout << "First version: There are in total " 
+		 << num(x, y) << " possible paths." << endl;
 	
 	//second version
 	//this version using a double vector as a reference parameter in the helper function
