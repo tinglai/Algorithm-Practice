@@ -13,39 +13,41 @@ public:
     void reorderList(ListNode *head) {
 		if(head == NULL) return;
 		if(head->next == NULL) return;
-		ListNode *fast = head;
+		ListNode *fast = head->next;
+		//this is a good trick to find the mid node of the list
+		//note that the fast pointer starts from head->next;
+		//then when the loop is over, slow is always at the mid
+		//of the list
 		ListNode *slow = head;
 		while(fast != NULL && fast->next != NULL){
 			slow = slow->next;
 			fast = fast->next->next;
 		}
-		if(fast != NULL){
-		//when the number of nodes in the list is odd
-			slow = slow->next;
-		}
-		//now slow is the head of the later half sublist
-		ListNode *a, *b, *c;
-		a = slow;
-		b = slow->next;
-		while(b != NULL){
-			c = b->next;
+
+		ListNode *a = slow->next;
+		ListNode *b = a->next;
+		slow->next = NULL;//cut the list from mid
+		a->next = NULL;
+
+		while(b!= NULL){
+			ListNode *temp = b->next;
 			b->next = a;
 			a = b;
-			b = c;
+			b = temp;
 		}
-		//above loop reverse the order of the later half sublist
-		ListNode *first = head;//first iterates the first half sublist
-		ListNode *second = a;//second iterates the second half sublist
-		ListNode *temp1;
-		ListNode *temp2;
-		while(second != slow){
-			temp1 = first->next;
-			temp2 = second->next;
-			first->next = second;
-			second->next = temp1;
-			first = temp1;
-			second = temp2;
+		//at the end of this loop, a is the head of the second half list
+		//after reversion
+
+		while(a != NULL){
+		//the second half list is always shorter than the first half
+			ListNode *temp = a->next;
+			a->next = head->next;
+			head->next = a;
+			head = a->next;
+			a = temp;
 		}
+
+/*
 		temp1 = first->next;
 		first->next = second;
 		if(second == temp1){
@@ -55,12 +57,12 @@ public:
 			second->next = temp1;
 			temp1->next = NULL;
 		}
+*/
     }
 };
 
 int main(){
 	ListNode *a = new ListNode(0);
-/*
 	ListNode *b = new ListNode(1);
 	ListNode *c = new ListNode(2);
 	ListNode *d = new ListNode(3);
@@ -75,7 +77,7 @@ int main(){
 	e->next = f;
 	f->next = g;
 	g->next = h;
-*/
+
 	Solution solt;
 	solt.reorderList(a);
 	ListNode* i = a;
