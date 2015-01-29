@@ -50,7 +50,6 @@ public:
 					else count[slope]++;
 					if(count[slope] > result){
 						result = count[slope];
-cout << "slope = " << slope << endl;
 					}
 				}
 			}
