@@ -25,6 +25,10 @@ public:
 		}
 		if(m == 1 && n == 1){
 			return (k == 1 ? min(A[0], B[0]): max(A[0], B[0]));
+			//this is only corner case I cannot avoid when chosing
+			//index as below.
+			//when m and n both equal to 1, i = 0, j = 1 which is
+			//out of bound
 		}
 //this is a help function used to find the kth smallest number among
 //two sorted arrays, A and B, with length m and n, respectively.
