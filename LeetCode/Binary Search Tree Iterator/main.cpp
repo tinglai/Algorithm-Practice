@@ -14,10 +14,19 @@ struct TreeNode{
 class BSTIterator{
 public:
 	queue<int> memo;
+	vector<int> test;
 
     BSTIterator(TreeNode *root){
 		help(root, memo);
     }
+	
+	void lala(TreeNode* root){
+		if(root == NULL) return;
+cout << test.size() << endl;
+		test.push_back(1);
+		lala(root->left);
+	}
+	
 	void help(TreeNode *root, queue<int>& memo){
 		if(root == NULL) return;
 		help(root->left, memo);
@@ -58,5 +67,7 @@ int main(){
 	n3->right = n7;
 
 	BSTIterator i = BSTIterator(n1);
+i.lala(n1);
+exit(1);
 	while(i.hasNext()) cout << i.next() << endl;
 }
