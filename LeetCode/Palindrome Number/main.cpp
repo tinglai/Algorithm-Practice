@@ -9,25 +9,14 @@ public:
     bool isPalindrome(int x){
 		if(x < 0){
 			return false;
-/*
-			if(x == INT_MIN) return false;
-			else x = -x;
-*/
 		}
-		int n = log(x) / log(10);
-		while(n > 0){
-			int a = pow(10, n);
-			int b1 = x % 10;
-			int b2 = x / a;
-cout << "a = " << a << endl;
-cout << "b1 = " << b1 << " b2 = " << b2 << endl;
-			if(b1 != b2) return false;
-			x = (x - a * b2) / 10;
-cout << "x = " << x << endl;
-			n = log(x) / log(10);
-cout << "n = " << endl;
+		int x_temp = x;
+		int y = 0;
+		while(x_temp > 0){
+			y = y * 10 + x_temp % 10;
+			x_temp = x_temp / 10;
 		}
-		return true;
+		return (x - y == 0);
     }
 };
 
