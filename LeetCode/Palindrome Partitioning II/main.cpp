@@ -10,36 +10,25 @@ public:
     int minCut(string s){
 		int size = (int)s.size();
 		if(size <= 1) return 0;
-		if(isPalindrome(s)) return 0;
-		vector<int> memo(size + 1);
-		memo[0] = 0;
-		memo[1] = 0;
-		for(int i = 1; i < size; i++){
-			
+		vector<int> memo(s.size() + 1);
+		for(unsigned int i = 0; i < memo.size(); i++){
+			memo[i] = i - 1;
+		}
+		for(int i = 0; i < (int)s.size(); i++){
+			for(int j = 0; 
+			   (i - j) >= 0 
+			   	      && i + j < (int)s.size() 
+ 			          && s[i - j] == s[i + j]; 
+			   j++){
+				memo[i + j + 1] = min(memo[i - j] + 1, memo[i + j + 1]);
+			}
+			for(int j = 0; i - j >= 0 && i + j + 1 < (int)s.size() && s[i - j] == s[i + j + 1]; j++){
+				memo[i + j + 2] = min(memo[i - j] + 1, memo[i + j + 2]);
+			}
 		}
 		return memo.back();
     }
-	bool isPalindrome(string s){
-		int size = (int)s.size();
-		if(size <= 1) return true;
-		int i = 0; 
-		int j = size - 1;
-		while(i < j){
-			if(s[i] != s[j]) return false;
-			i++;
-			j--;
-		}
-		return true;
-	}
-	void help(vector<int>& memo, int idx, string& s){
-		for(int i = idx; i >= 0; i--){
-			string tempStr = s.substr(i, idx - i + 1);
-			int tempCut = 1 + memo[idx] + help(memo, , tempStr);
-		}
-	}
 }; 
-
-
 
 int main(){
 	string s = "aab";
