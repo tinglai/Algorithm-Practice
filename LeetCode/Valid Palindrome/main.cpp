@@ -26,7 +26,7 @@ public:
 			else A = s[a];
 			if(s[b] <= 'Z' && s[b] >= 'A') B = s[b] + 32;
 			else B = s[b];
-cout << "A = " << A << " B = " << B << endl;
+// cout << "A = " << A << " B = " << B << endl;
 			if(A != B) return false;
 			a++;
 			b--;
